@@ -4,6 +4,7 @@ NPM     : 2106651591
 # Pertanyaan 1 : Pembuatan Bagan
 Hasil bagan request client ke web aplikasi berbasis Django dan kaitannya dapat dilihat di link berikut:
 GDrive https://drive.google.com/file/d/1BWqLdLqJGZpg2ei6wk2lULPj0pqmpWCj/view?usp=sharing
+![bagan tugas 1](https://user-images.githubusercontent.com/112604705/190206425-5d5bd2b7-71f2-475f-941e-9db575202623.png)
 
 # Pertanyaan 2 : Penggunaan Virtual Environment
 Penggunaan virtual environment dilakukan karena penggunaan ini sudah menjadi best practice saat menggunakan Django. Virtual environment digunakan untuk mengeliminasi konfik dependencies.Virtual environment akan mengisolasi package dan dependencies dari sebuah aplikasi. Oleh karena itu, saat mengerjakan sebuah aplikasi atau proyek django sebaiknya kita menggunakan virtual environment agar perubahan yang terjadi di dalam sebuah proyek tidak mempengaruhi proyek lainnya. Setiap proyek Django yang dikerjakan sebaiknya memiliki virtual environmentnya sendiri.
