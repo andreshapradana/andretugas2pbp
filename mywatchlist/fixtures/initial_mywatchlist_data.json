@@ -1,0 +1,112 @@
+[
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":1,
+        "fields":{
+            "watched":"Yes",
+            "title":"The Dark Knight",
+            "rating": "5.0",
+            "release_date":"18 July 2008",
+            "review":"One of the best film i have ever watched with a very interesting character stories."
+        }
+    },
+{
+        "model":"mywatchlist.mywatchlist",
+        "pk":2,
+        "fields":{
+            "watched":"No",
+            "title":"Gladiator",
+            "rating": "4.6",
+            "release_date":"8 August 2000",
+            "review":"Great movie with instane cinematography techniques."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":3,
+        "fields":{
+            "watched":"Yes",
+            "title":"Titanic",
+            "rating": "4.5",
+            "release_date":"5 January 1998",
+            "review":"A classic of a film with a legendary love story. The actors did an amazing job potraying their own characters."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":4,
+        "fields":{
+            "watched":"No",
+            "title":"Mencuri Raden Saleh",
+            "rating": "4.0",
+            "release_date":"25 August 2022",
+            "review":"Great Indonesian heist movie with a few flaws but perfect for a first one. Amazing acting by the actors."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":5,
+        "fields":{
+            "watched":"Yes",
+            "title":"Pengabdi Setan",
+            "rating": "4.1",
+            "release_date":"28 September 2017",
+            "review":"A good Indonesian horror film which offers a unique horror experience. Interesting stories with twists at the end."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":6,
+        "fields":{
+            "watched":"No",
+            "title":"Avatar",
+            "rating": "4.7",
+            "release_date":"18 December 2009",
+            "review":"Brilliant film whcih is worthy of the record they hold of having the most movie sales worldwide."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":7,
+        "fields":{
+            "watched":"Yes",
+            "title":"Justice League",
+            "rating": "3.0",
+            "release_date":"17 November 2017",
+            "review":"A flawed movie with too much plot holes but very enjoyable for long time fan of the series who are excited to see their heroes on the big screen."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":8,
+        "fields":{
+            "watched":"Yes",
+            "title":"Deadpool",
+            "rating": "4.7",
+            "release_date":"10 February 2016",
+            "review":"One of the best anti-hero movies which is very funny, entertaining, and refreshing."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":9,
+        "fields":{
+            "watched":"Yes",
+            "title":"The Truman Show",
+            "rating": "4.8",
+            "release_date":"31 October 1998",
+            "review":"A very great film which makes you think that the story relates to you very much in real life. The movie offers new perspective on life."
+        }
+    },
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":10,
+        "fields":{
+            "watched":"No",
+            "title":"300",
+            "rating": "3.5",
+            "release_date":"9 March 2007",
+            "review":"A very iconic film with its flaws but very faithful to the comic series of the name."
+        }
+    }
+]
