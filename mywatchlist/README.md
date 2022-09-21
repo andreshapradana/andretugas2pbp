@@ -2,25 +2,21 @@
 Json atau JavaScript Object Notation adalah sebuah format untuk menyimpan dan mentransport (Delivery) data. XML atau eXtensible Markup Languange juga merupakan format untuk menyimpan dan delivery data. HTML atau Hypertext Markup Languange adalah sebuah sistem untuk menampilkan text files, font, warna, grafik, dan hyoerlink effect dalam halaman World Wide Web.
 Perbedaan JSON, XML, dan HTML adalah sebagai berikut:
 1. JSON:
-> File json lebih mudah dibaca daripada file xml
-> File json tidak menyediakan comments
-> json digunakan untuk merepresentasikan sebuah objek
+File json lebih mudah dibaca daripada file xml, file json tidak menyediakan comments, dan json digunakan untuk merepresentasikan sebuah objek
 2. XML:
-> Menggunakan tag structure untuk merepresentasikan data
-> Lebih sulit dibaca dibandingkan json maupun HTML
-> Lebih aman dibandingkan json
+Menggunakan tag structure untuk merepresentasikan data, lebih sulit dibaca dibandingkan json maupun HTML, dan Lebih aman dibandingkan json
 3. HTML:
-> Hanya digunakan untuk menampilkan suatu hal dalam halaman World Wide Web
+Hanya digunakan untuk menampilkan suatu hal dalam halaman World Wide Web
 # Alasan memerlukan data delivery dalam pengimplementasian sebuah platform
-Data delivery dalam pengimplementasian sebuah platform sangatlah penting untuk penukaran data.
+Data delivery dalam pengimplementasian sebuah platform sangatlah penting untuk penukaran data. Data tersebut juga harus diolah dan diproses. User akan memerlukan data-data tersebut. Sehingga, data delivery dengan HTML, XML, dan JSON sangat diperlukan dalam sebuah platform agar user dapat membaca dan menerima data-data yang ada.
 # Implementasi Checklist
-- Menambah suatu aplikasi baru bernama mywatchlist di proyek Django Tugas 2 pekan lalu
+- Menambah suatu aplikasi baru bernama mywatchlist di proyek Django Tugas 2 pekan lalu <br />
 Dalam checklist ini, saya menyalakan virtual environment terlebih dahulu. Lalu saya membuat aplikasi mywatchlist dengan perintah `python manage.py startapp wishlist` di cmd. 
-- Menambahkan path mywatchlist sehingga dapat mengakses http://localhost:8000/mywatchlist
+- Menambahkan path mywatchlist sehingga dapat mengakses http://localhost:8000/mywatchlist <br />
 Saya menambahkan aplikasi mywatchlist ke settings.py di project_django. Saya menambahkan mywatchlist di variabel INSTALLED_APPS
-- Membyat sebuah model MyWatchList dengan atribut yang sesuai
+- Membuat sebuah model MyWatchList dengan atribut yang sesuai <br />
 Setelah itu saya mengisi models.py di mywatchlist dengan atribut watched, title, rating, release_date, dan review. Lalu, saya lakukan perintah `python manage.py makemigrations` dan `python manage.py migrate`
-- Menambahkan minimal 10 data untuk objek MyWatchList
+- Menambahkan minimal 10 data untuk objek MyWatchList <br />
 Saya mengimplementasi ini dengan membuat folder bernama fixtures dan file yang bernama `initial_mywatchlist_data.json`. Isi dari file tersebut adalah data objek seperti berikut:
 ```py
 {
@@ -36,7 +32,7 @@ Saya mengimplementasi ini dengan membuat folder bernama fixtures dan file yang b
     }
 ```
 Lalu saya melakukan perintah `python manage.py loaddata initial_mywatchlist_data.json` untuk memasukkan data ke database lokal.
-- Mengimplementasikan sebuah fitur untuk menyajikamn data yang telah dibuat dalam format HTML, XML, dan JSON dan membuat routing sehingga data dapat diakses dengan urlnya masing-masing
+- Mengimplementasikan sebuah fitur untuk menyajikamn data yang telah dibuat dalam format HTML, XML, dan JSON dan membuat routing sehingga data dapat diakses dengan urlnya masing-masing <br />
 Saya mengimplementasi fitur dalam HTML dengan menambahkan fungsi pada views.py yang mengembalikan request, "mywatchlist.html", dan context yang berisi sebuah data. Lalu, saya membuat folder bernama templtes dan berkas bernama mywatchlist.html dan mengisinya dengan template web page yang sesuai sebagai berikut:
 ```py
 {% extends 'base.html' %}
@@ -75,7 +71,7 @@ Saya mengimplementasi fitur dalam HTML dengan menambahkan fungsi pada views.py y
 
  {% endblock content %}
  ```
- Lalu saya membuat file urls.py dan menambahkan `path('html/', show_mywatchlist, name='show_mywatchlist'),` ke dalam urlpatterns. Lalu saya juga menambahkan `path('mywatchlist/', include('mywatchlist.urls')),` ke urls.py dalam folder project_django
+ Lalu saya membuat file urls.py dan menambahkan `path('html/', show_mywatchlist, name='show_mywatchlist'),` ke dalam urlpatterns. Lalu saya juga menambahkan `path('mywatchlist/', include('mywatchlist.urls')),` ke urls.py dalam folder project_django <br />
 Saya mengimplementasi fitur XML dengan membuat sebuah fungsi show_xml dan show_xml_by_id di views.py. Fungsi yang saya implementasikan sebagai berikut:
 ```py
 def show_xml(request):
@@ -105,12 +101,12 @@ Lalu, saya membuka urls.py dan mengimport semua json yang sudah saya tulis. Lalu
 path('json/', show_json, name='show_json'),
 path('json/<int:id>', show_json_by_id, name='show_json_by_id'),
 ```
-- Melakukan deployment ke Heroku
+- Melakukan deployment ke Heroku <br />
 Untuk deploy saya menambahkan potongan kode `release: sh -c 'python manage.py migrate && python manage.py loaddata initial_mywatchlist_data.json'. Setelah itu, saya push perubahan code yang saya tulis ke github dan melakukan deploy ke Heroku app seperti biasa. Link akses:
 https://andretugas2pbp.herokuapp.com/mywatchlist/html/
 https://andretugas2pbp.herokuapp.com/mywatchlist/xml/
 https://andretugas2pbp.herokuapp.com/mywatchlist/json/
-- Mengakses tiga URL di atas menggunakan postman
+- Mengakses tiga URL di atas menggunakan postman <br />
 Saya melakukan ini dengan menambahkan 3 link di atas ke website postman. Berikut hasil screenshot:
 - HTML
 ![image](https://user-images.githubusercontent.com/112604705/191491263-39e223b7-9340-4de4-9aab-c46606d15a3a.png)
@@ -120,7 +116,7 @@ Saya melakukan ini dengan menambahkan 3 link di atas ke website postman. Berikut
 ![image](https://user-images.githubusercontent.com/112604705/191491633-e0e7291f-7fd6-4416-a377-e5f35722ae19.png)
 
 
-- Menambahkan unit test pada tests.py
+- Menambahkan unit test pada tests.py <br />
 Saya mengimplementasikan checklist ini dengan mengikuti cara di power point week 3 dan penjelasan dosen pada kelas. Kode yang saya implementasikan adalah sebagai berikut:
 ```py
 class AppTest(TestCase):
