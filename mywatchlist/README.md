@@ -103,6 +103,13 @@ https://andretugas2pbp.herokuapp.com/mywatchlist/xml/
 https://andretugas2pbp.herokuapp.com/mywatchlist/json/
 - Mengakses tiga URL di atas menggunakan postman
 Saya melakukan ini dengan menambahkan 3 link di atas ke website postman. Berikut hasil screenshot:
+- HTML
+![image](https://user-images.githubusercontent.com/112604705/191491263-39e223b7-9340-4de4-9aab-c46606d15a3a.png)
+- XML
+![image](https://user-images.githubusercontent.com/112604705/191491533-bedaf1c6-b18c-422b-8fbb-bc4b23151841.png)
+- JSON
+![image](https://user-images.githubusercontent.com/112604705/191491633-e0e7291f-7fd6-4416-a377-e5f35722ae19.png)
+
 
 - Menambahkan unit test pada tests.py
 Saya mengimplementasikan checklist ini dengan mengikuti cara di power point week 3 dan penjelasan dosen pada kelas. Kode yang saya implementasikan adalah sebagai berikut:
