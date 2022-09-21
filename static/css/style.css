@@ -1,0 +1,12 @@
+table{
+    border: 1px solid;
+    width: 100%;
+}
+
+th{
+    border: 1px solid;
+}
+
+h2{
+    text-align: center;
+}
