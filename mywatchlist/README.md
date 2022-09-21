@@ -1,7 +1,16 @@
 # Perbedaan JSON, XML, dan HTML
 Json atau JavaScript Object Notation adalah sebuah format untuk menyimpan dan mentransport (Delivery) data. XML atau eXtensible Markup Languange juga merupakan format untuk menyimpan dan delivery data. HTML atau Hypertext Markup Languange adalah sebuah sistem untuk menampilkan text files, font, warna, grafik, dan hyoerlink effect dalam halaman World Wide Web.
-Perbedaan JSON dan XML adalah sebagai berikut:
-XML menghasilkan dokumen XML.
+Perbedaan JSON, XML, dan HTML adalah sebagai berikut:
+1. JSON:
+> File json lebih mudah dibaca daripada file xml
+> File json tidak menyediakan comments
+> json digunakan untuk merepresentasikan sebuah objek
+2. XML:
+> Menggunakan tag structure untuk merepresentasikan data
+> Lebih sulit dibaca dibandingkan json maupun HTML
+> Lebih aman dibandingkan json
+3. HTML:
+> Hanya digunakan untuk menampilkan suatu hal dalam halaman World Wide Web
 # Alasan memerlukan data delivery dalam pengimplementasian sebuah platform
 Data delivery dalam pengimplementasian sebuah platform sangatlah penting untuk penukaran data.
 # Implementasi Checklist
