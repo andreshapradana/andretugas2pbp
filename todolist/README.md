@@ -58,4 +58,189 @@ Lalu, saya membuat folder templates yang berisi `register.html` dengan kode beri
 
 {% endblock content %}
 ```
-Lalu, saya menambahkan path register ke urls.py di variabel `urlpatterns path('register/', register, name='register'),`
+Lalu, saya menambahkan path register ke urls.py di variabel urlpatterns `path('register/', register, name='register'),`
+
+Untuk implementasi login, saya membuka views.py di folder todolist dan mengimport authenticate dan login. Lalu, saya membuat fungsi login_user dengan parameter request. Potongan kode sebagai berikut:
+```py
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('todolist:show_todolist')
+        else:
+            messages.info(request, 'Username atau Password salah!')
+    context = {}
+    return render(request, 'login.html', context)
+```
+Lalu saya menambahkan berkas HTML baru dengan nama login.html pada folder templates. Isi dari login.html adalah sebagai berikut:
+```py
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+
+    <h1>Login</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+                    
+            <tr>
+                <td>Password: </td>
+                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input class="btn login_btn" type="submit" value="Login"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}     
+        
+    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+
+</div>
+
+{% endblock content %}
+```
+Lalu, saya menambahkan path login ke urls.py di variabel urlpatterns `path('login/', login_user, name='login'),`
+Lalu saya menerestirksi akses halaman todolist dengan mengimport `login_required` pada views dan menambahkan kode `@login_required(login_url='/todolist/login/')` di atas fungsi show_todolist.
+
+Untuk membuat fungsi logout, saya membuka views.py. Saya mengimport logout dari django.contrib.auth. Lalu saya membuat fungsi bernama `logout_user` yang menerima parameter request.
+```py
+def logout_user(request):
+    logout(request)
+    return redirect('todolist:login')
+```
+Lalu saya membuka berkas todolist.html dan menambahkan button logout dengan kode berikut:
+```py
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+```
+Lalu, saya menambahkan path logout ke urls.py di variabel urlpatterns `path('logout/', logout_user, name='logout'),`
+
+- Membuat halaman utama todolist yang memuat username pengguna, tombol Tambah Task Baru, tombol logout, serta tabel berisi tanggal pembuatan task, judul task, dan deskripsi task.
+Implementasi checklist ini adalah dengan membuat `todolist.html` di templates. Lalu, saya implementasikan kode berikut:
+```py
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>Assignment 4 PBP/PBD</h1>
+
+  <h5>Name: </h5>
+  <p>{{user}}</p>
+
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Task Title</th>
+      <th>Description</th>
+    </tr>
+    {% comment %} Add the data below this line {% endcomment %}
+    {% for task in list_todolist %}
+    <tr>
+        <th>{{task.date}}</th>
+        <th>{{task.title}}</th>
+        <th>{{task.description}}</th>
+    </tr>
+    {% endfor %}
+  </table>
+  <button><a href="{% url 'todolist:create_task' %}">Create New Task</a></button>
+  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+  <h2>{{Pesan}}</h2>
+
+ {% endblock content %}
+ ```
+ - Membuat halaman form untuk pembuatan task.
+ Untuk implementasi checklist ini, saya membuat file baru `forms.py`. Saya mengimport model form dan membuat fungsi form baru.
+```py
+ class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = '__all__'
+```
+Lalu saya membuat fungsi di views.py dan mengimport segala hal yang penting seperti fungsi pada forms.
+```py
+def create_task(request):
+    form = TaskForm()
+
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tast telah berhasil dibuat!')
+            return redirect('todolist:show_todolist')
+    
+    context = {'form':form}
+    return render(request, 'createtask.html', context)
+```
+Saya membuat file html baru di templates yaitu `createtask.html`
+```py
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Registrasi Akun</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<div class = "login">
+    
+    <h1>New Task</h1>  
+
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table>  
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Create Task"/></td>  
+                </tr>  
+            </table>  
+        </form>
+
+    {% if messages %}  
+        <ul>   
+            {% for message in messages %}  
+                <li>{{ message }}</li>  
+                {% endfor %}  
+        </ul>   
+    {% endif %}
+
+</div>  
+
+{% endblock content %}
+```
+
+Setelah itu saya menambahkan path di urls.py di variabel urlpatterns `path('createtask/', create_task, name='create_task'),`
+- Membuat routing sehingga beberapa fungsi dapat diakses
+saya membuat file urls.py dan menambahkan beberapa potongan kode ke urlpatterns. Potongan kode sebagai berikut:
+```py
+urlpatterns = [
+    path('register/', register, name='register'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout'),
+    path('', show_todolist, name='show_todolist'),
+    path('create-task/', create_task, name='create_task')
+]
+```
