@@ -4,7 +4,7 @@
 
   <h1>Assignment 4 PBP/PBD</h1>
 
-  <h5>User: </h5>
+  <h5>User currently logged-in: </h5>
   <p>{{user}}</p>
 
   <table>
@@ -12,18 +12,25 @@
       <th>Date</th>
       <th>Task Title</th>
       <th>Description</th>
+      <th>Status</th>
+      <th>Delete Task</th>
     </tr>
     {% comment %} Add the data below this line {% endcomment %}
     {% for task in list_todolist %}
     <tr>
-        <th>{{task.date}}</th>
-        <th>{{task.title}}</th>
-        <th>{{task.description}}</th>
+      <th>{{task.date}}</th>
+      <th>{{task.title}}</th>
+      <th>{{task.description}}</th>
+        {% if task.is_finished %}
+        <th>Selesai</th>
+        {% else %}
+        <th>Belum Selesai</th>
+        {% endif %}
+      <th><button><a href="{% url 'todolist:update_data' %}">Delete</a></button></th>
     </tr>
     {% endfor %}
   </table>
   <button><a href="{% url 'todolist:create_task' %}">Create New Task</a></button>
   <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-  <h2>{{Pesan}}</h2>
 
  {% endblock content %}

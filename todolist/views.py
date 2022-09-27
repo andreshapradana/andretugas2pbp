@@ -15,7 +15,6 @@ def show_todolist(request):
     data_todolist = Task.objects.filter(user=request.user)
     context = {
     'list_todolist': data_todolist,
-    'nama': 'Andresha Pradana',
     }
     return render(request, "todolist.html", context)
 
@@ -49,15 +48,32 @@ def logout_user(request):
     logout(request)
     return redirect('todolist:login')
 
+
 def create_task(request):
     form = TaskForm()
 
     if request.method == "POST":
         form = TaskForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Tast telah berhasil dibuat!')
+            var = form.save(commit=False)
+            var.user = request.user
+            var.save()
             return redirect('todolist:show_todolist')
     
     context = {'form':form}
     return render(request, 'create-task.html', context)
+    
+
+@login_required(login_url='/todolist/login/')
+def update_data(request, id):
+    todo = Task.objects.get(id = id)
+    todo.is_finished = not(todo.is_finished)
+    todo.save()
+    return redirect('todolist:show_todolist')
+
+
+@login_required(login_url='/todolist/login/')
+def delete_data(request, id):
+    todo = Task.objects.get(id = id)
+    todo.delete()
+    return redirect('todolist:show_todolist')

@@ -1,3 +1,9 @@
+ # Apa kegunaan {% csrf_token %} pada elemen <form>? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen <form>?
+CSRF atau Cross-Sire Request Forgery sebenarnya adalah sebuah serangan terhadap aplikasi web yang memanfaatkan bug atau vulnerability pada aplikasi web dengan mengeksploitasi suatu task dari sebuah web dengan memanfaatkan autentikasi yang dimiliki oleh user (korban). Oleh karenna itu, kegunaan csrf_token pada form adalah untuk mengamankan web kita agar tidak terjadi eksploitasi tersebut. Apabila tidak ada potongan kode tersebut, maka aplikasi web yang dibuat menjadi tidak aman.
+
+# Apakah kita dapat membuat elemen <form> secara manual (tanpa menggunakan generator seperti {{ form.as_table }})? Jelaskan secara gambaran besar bagaimana cara membuat <form> secara manual.
+Ya, kita dapat membuatnya secara manual.
+
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
 - Membuat suatu aplikasi baru bernama todolist di proyek tugas Django yang sudah digunakan sebelumnya.
 Dalam checklist ini, saya menyalakan virtual environment terlebih dahulu. Lalu saya membuat aplikasi todolist dengan perintah `python manage.py startapp todolist` di cmd.
