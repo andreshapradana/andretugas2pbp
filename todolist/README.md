@@ -2,8 +2,11 @@
 CSRF atau Cross-Sire Request Forgery sebenarnya adalah sebuah serangan terhadap aplikasi web yang memanfaatkan bug atau vulnerability pada aplikasi web dengan mengeksploitasi suatu task dari sebuah web dengan memanfaatkan autentikasi yang dimiliki oleh user (korban). Oleh karenna itu, kegunaan csrf_token pada form adalah untuk mengamankan web kita agar tidak terjadi eksploitasi tersebut. Apabila tidak ada potongan kode tersebut, maka aplikasi web yang dibuat menjadi tidak aman.
 
 # Apakah kita dapat membuat elemen <form> secara manual (tanpa menggunakan generator seperti {{ form.as_table }})? Jelaskan secara gambaran besar bagaimana cara membuat <form> secara manual.
-Ya, kita dapat membuatnya secara manual.
+Ya, kita dapat membuatnya secara manual. Secara gambaran besar, pembuatan form secara manual akan kita tulis pada halaman form masing-masing data field yang diperlukan. Lalu kita seidakan juga input pada masing-masing label data field yang sudah ditulis.
 
+ # Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada _database_, hingga munculnya data yang telah disimpan pada _template_ HTML.
+ Dari submisi dimana user menekan tombol, sistem akan membuat sebuah request ke `views.py` sehingga akan disimpan dalam database. Lalu, akan dibuat sebuah form yang dicheck dulu apakah valid dengan is_valid() sehingga dapat disimpan dengan method save(). Fungsi yang dibuat di `views.py` akan menggunakan form dan memanggil kembali redirect untuk menampilkan data yang sudah diinput. Lalu, views.py akan melakukan render data ke HTML sehingga akan muncul pada template HTML.
+ 
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
 - Membuat suatu aplikasi baru bernama todolist di proyek tugas Django yang sudah digunakan sebelumnya.
 Dalam checklist ini, saya menyalakan virtual environment terlebih dahulu. Lalu saya membuat aplikasi todolist dengan perintah `python manage.py startapp todolist` di cmd.
@@ -250,3 +253,9 @@ urlpatterns = [
     path('create-task/', create_task, name='create_task')
 ]
 ```
+ - Melakukan deployment ke Heroku
+ Setelah itu, saya push perubahan kode yang saya lakukan ke github dan melakukan deployment.
+ - Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku
+ Saya membuat dua akun yaitu andrepengguna1 dan andrepengguna2. Lalu pada masing-masing akun, saya membuat 3 data tasks seperti berikut:
+![image](https://user-images.githubusercontent.com/112604705/192695542-36f6776f-d3a2-470c-b13d-5093f7d340e1.png)
+![image](https://user-images.githubusercontent.com/112604705/192695590-889dbaec-f0ed-4157-89bc-cab183c64716.png)
