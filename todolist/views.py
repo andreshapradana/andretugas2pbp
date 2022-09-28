@@ -65,15 +65,15 @@ def create_task(request):
     
 
 @login_required(login_url='/todolist/login/')
-def update_data(request, id):
-    todo = Task.objects.get(id = id)
+def update_data(request):
+    todo = Task.objects.get(id=request.POST["id"])
     todo.is_finished = not(todo.is_finished)
     todo.save()
     return redirect('todolist:show_todolist')
 
 
 @login_required(login_url='/todolist/login/')
-def delete_data(request, id):
-    todo = Task.objects.get(id = id)
+def delete_data(request):
+    todo = Task.objects.get(id=request.POST["id"])
     todo.delete()
     return redirect('todolist:show_todolist')

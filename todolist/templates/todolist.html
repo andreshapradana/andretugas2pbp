@@ -26,7 +26,18 @@
         {% else %}
         <th>Belum Selesai</th>
         {% endif %}
-      <th><button><a href="{% url 'todolist:update_data' %}">Delete</a></button></th>
+      <td>
+        <form method="POST" action="{% url 'todolist:update_data' %}">
+          {% csrf_token %} 
+          <input type="hidden" name="id" value="{{x.id}}"/>
+          <button type="submit">Update</button>
+        </form>
+        <form method="POST" action="{% url 'todolist:delete_data' %}">
+          {% csrf_token %} 
+          <input type="hidden" name="id" value="{{x.id}}"/>
+          <button type="submit">Delete</button>
+        </form>
+        </td>
     </tr>
     {% endfor %}
   </table>
