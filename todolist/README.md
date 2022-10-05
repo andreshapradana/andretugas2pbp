@@ -2,16 +2,19 @@
 CSRF atau Cross-Sire Request Forgery sebenarnya adalah sebuah serangan terhadap aplikasi web yang memanfaatkan bug atau vulnerability pada aplikasi web dengan mengeksploitasi suatu task dari sebuah web dengan memanfaatkan autentikasi yang dimiliki oleh user (korban). Oleh karenna itu, kegunaan csrf_token pada form adalah untuk mengamankan web kita agar tidak terjadi eksploitasi tersebut. Apabila tidak ada potongan kode tersebut, maka aplikasi web yang dibuat menjadi tidak aman.
 
 # Apakah kita dapat membuat elemen <form> secara manual (tanpa menggunakan generator seperti {{ form.as_table }})? Jelaskan secara gambaran besar bagaimana cara membuat <form> secara manual.
-Ya, kita dapat membuatnya secara manual.
+Ya, kita dapat membuatnya secara manual. Secara gambaran besar, pembuatan form secara manual akan kita tulis pada halaman form masing-masing data field yang diperlukan. Lalu kita seidakan juga input pada masing-masing label data field yang sudah ditulis.
 
+ # Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada _database_, hingga munculnya data yang telah disimpan pada _template_ HTML.
+ Dari submisi dimana user menekan tombol, sistem akan membuat sebuah request ke `views.py` sehingga akan disimpan dalam database. Lalu, akan dibuat sebuah form yang dicheck dulu apakah valid dengan is_valid() sehingga dapat disimpan dengan method save(). Fungsi yang dibuat di `views.py` akan menggunakan form dan memanggil kembali redirect untuk menampilkan data yang sudah diinput. Lalu, views.py akan melakukan render data ke HTML sehingga akan muncul pada template HTML.
+ 
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
-- Membuat suatu aplikasi baru bernama todolist di proyek tugas Django yang sudah digunakan sebelumnya.
+- Membuat suatu aplikasi baru bernama todolist di proyek tugas Django yang sudah digunakan sebelumnya. <br />
 Dalam checklist ini, saya menyalakan virtual environment terlebih dahulu. Lalu saya membuat aplikasi todolist dengan perintah `python manage.py startapp todolist` di cmd.
-- Menambahkan path todolist sehingga pengguna dapat mengakses http://localhost:8000/todolist.
+- Menambahkan path todolist sehingga pengguna dapat mengakses http://localhost:8000/todolist.<br />
 Saya menambahkan aplikasi todolist ke settings.py di project_django. Saya menambahkan todolist di variabel INSTALLED_APPS
-- Membuat sebuah model Task dengan atribut yang sesuai
+- Membuat sebuah model Task dengan atribut yang sesuai<br />
 Setelah itu saya mengisi models.py di todolist dengan atribut user, date, title, dan description. Lalu, saya lakukan perintah `python manage.py makemigrations` dan `python manage.py migrate`
-- Mengimplementasikan form registrasi, login, dan logout agar pengguna dapat menggunakan todolist dengan baik.
+- Mengimplementasikan form registrasi, login, dan logout agar pengguna dapat menggunakan todolist dengan baik.<br />
 Untuk implementasi form registrasi, saya membuka views.py di folder todolist dan mengimport redirect, UserCreationForm, dan messages. Lalu saya membuat sebuah fungsi. Lalu saya menambahkan fungsi register dengan kode berikut:
 ```py
 def register(request):
@@ -130,8 +133,7 @@ Lalu saya menambahkan berkas HTML baru dengan nama login.html pada folder templa
 {% endblock content %}
 ```
 Lalu, saya menambahkan path login ke urls.py di variabel urlpatterns `path('login/', login_user, name='login'),`
-Lalu saya menerestirksi akses halaman todolist dengan mengimport `login_required` pada views dan menambahkan kode `@login_required(login_url='/todolist/login/')` di atas fungsi show_todolist.
-
+Lalu saya menerestirksi akses halaman todolist dengan mengimport `login_required` pada views dan menambahkan kode `@login_required(login_url='/todolist/login/')` di atas fungsi show_todolist.<br />
 Untuk membuat fungsi logout, saya membuka views.py. Saya mengimport logout dari django.contrib.auth. Lalu saya membuat fungsi bernama `logout_user` yang menerima parameter request.
 ```py
 def logout_user(request):
@@ -144,7 +146,7 @@ Lalu saya membuka berkas todolist.html dan menambahkan button logout dengan kode
 ```
 Lalu, saya menambahkan path logout ke urls.py di variabel urlpatterns `path('logout/', logout_user, name='logout'),`
 
-- Membuat halaman utama todolist yang memuat username pengguna, tombol Tambah Task Baru, tombol logout, serta tabel berisi tanggal pembuatan task, judul task, dan deskripsi task.
+- Membuat halaman utama todolist yang memuat username pengguna, tombol Tambah Task Baru, tombol logout, serta tabel berisi tanggal pembuatan task, judul task, dan deskripsi task.<br />
 Implementasi checklist ini adalah dengan membuat `todolist.html` di templates. Lalu, saya implementasikan kode berikut:
 ```py
 {% extends 'base.html' %}
@@ -177,7 +179,7 @@ Implementasi checklist ini adalah dengan membuat `todolist.html` di templates. L
 
  {% endblock content %}
  ```
- - Membuat halaman form untuk pembuatan task.
+ - Membuat halaman form untuk pembuatan task.<br />
  Untuk implementasi checklist ini, saya membuat file baru `forms.py`. Saya mengimport model form dan membuat fungsi form baru.
 ```py
  class TaskForm(ModelForm):
@@ -239,7 +241,7 @@ Saya membuat file html baru di templates yaitu `createtask.html`
 ```
 
 Setelah itu saya menambahkan path di urls.py di variabel urlpatterns `path('createtask/', create_task, name='create_task'),`
-- Membuat routing sehingga beberapa fungsi dapat diakses
+- Membuat routing sehingga beberapa fungsi dapat diakses<br />
 saya membuat file urls.py dan menambahkan beberapa potongan kode ke urlpatterns. Potongan kode sebagai berikut:
 ```py
 urlpatterns = [
@@ -250,3 +252,11 @@ urlpatterns = [
     path('create-task/', create_task, name='create_task')
 ]
 ```
+ - Melakukan deployment ke Heroku<br />
+ Setelah itu, saya push perubahan kode yang saya lakukan ke github dan melakukan deployment.
+ - Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku<br />
+ Saya membuat dua akun yaitu andrepengguna1 dan andrepengguna2. Lalu pada masing-masing akun, saya membuat 3 data tasks seperti berikut:
+![image](https://user-images.githubusercontent.com/112604705/192695542-36f6776f-d3a2-470c-b13d-5093f7d340e1.png)
+![image](https://user-images.githubusercontent.com/112604705/192695590-889dbaec-f0ed-4157-89bc-cab183c64716.png)
+
+ Link Situs Web Heroku dapat diakses dari tautan berikut: https://andretugas2pbp.herokuapp.com/todolist/
