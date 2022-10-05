@@ -1,47 +1,104 @@
 {% extends 'base.html' %}
 
  {% block content %}
+ <style>
+  .cards{
+    box-shadow: 0 4px 8px 0  black;
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: lightgrey;
+    padding: 1px;
+    margin-left: 75px;
+    margin-right: 75px;
+  }
+
+  .cards:hover {
+  box-shadow:  0 4px 8px 0 green;
+}
+
+  .textwrap{
+    white-space: nowrap;
+    font-family: "Monaco";
+  }
+
+  .buttoncontainer{
+    display: flex;
+    text-align: center;
+    justify-content: center;  
+    align-items: center;  
+  }
+
+  .container-fluid{
+    display: flex;
+    text-align: center;
+    justify-content: center;  
+    align-items: center;  
+  }
+
+  button{
+    background-color: lightblue;  
+    color: black; 
+  }
+  h1{
+    text-align: center;
+  }
+
+  html{
+    background-color: lightgray;
+  }
+
+ </style>
 
   <h1>Assignment 4 PBP/PBD</h1>
 
   <h5>User currently logged-in: </h5>
   <p>{{user}}</p>
 
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Task Title</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Delete Task</th>
-    </tr>
+  
     {% comment %} Add the data below this line {% endcomment %}
     {% for task in list_todolist %}
-    <tr>
-      <th>{{task.date}}</th>
-      <th>{{task.title}}</th>
-      <th>{{task.description}}</th>
+    <div class= "cards">
+      <p>
+        <span class="textwrap"><b>Date : </b></span>
+        <span class="textwrap">{{task.date}}</span>
+        </p>
+        <p>
+        <span class="textwrap"><b>Title : </b></span>
+        <span class="textwrap">{{task.title}}</span>
+        </p>
+        <p>
+        <span class="textwrap"><b>Description : </b></span>
+        <span class="textwrap">{{task.description}}</span>
+        </p>
+        <p>
+        <span class="textwrap"><b>Status : </b></span>
         {% if task.is_finished %}
-        <th>Selesai</th>
+        <span class="textwrap">Selesai</span>
         {% else %}
-        <th>Belum Selesai</th>
+        <span class="textwrap">Belum Selesai</span>
         {% endif %}
-      <td>
-        <form method="POST" action="{% url 'todolist:update_data' %}">
-          {% csrf_token %} 
-          <input type="hidden" name="id" value="{{x.id}}"/>
-          <button type="submit">Update</button>
-        </form>
-        <form method="POST" action="{% url 'todolist:delete_data' %}">
-          {% csrf_token %} 
-          <input type="hidden" name="id" value="{{x.id}}"/>
-          <button type="submit">Delete</button>
-        </form>
-        </td>
-    </tr>
+      </p>
+          <div class = "buttoncontainer">
+          <form method="POST" action="{% url 'todolist:update_data' %}">
+            {% csrf_token %} 
+            <input type="hidden" name="id" value="{{x.id}}"/>
+            <button type="submit">Update</button>
+          </form>
+          <form method="POST" action="{% url 'todolist:delete_data' %}">
+            {% csrf_token %} 
+            <input type="hidden" name="id" value="{{x.id}}"/>
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+    </div><br>
     {% endfor %}
-  </table>
-  <button><a href="{% url 'todolist:create_task' %}">Create New Task</a></button>
-  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+    <nav class="navbar bg-light">
+      <div class="container-fluid">
+        <a href="{% url 'todolist:create_task' %}"><button class="btn btn-info">Create New Task</button></a>
+
+        <span class="navbar-brand mb-0 h1">Good luck with your task!</span>
+        <a href="{% url 'todolist:logout' %}"><button class="btn btn-info">Logout</button></a>
+      </div>
+    </nav>
 
  {% endblock content %}
