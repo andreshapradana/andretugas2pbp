@@ -8,8 +8,8 @@
     border-radius: 5px;
     background-color: lightgrey;
     padding: 1px;
-    margin-left: 75px;
-    margin-right: 75px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 
   .cards:hover {
@@ -35,11 +35,15 @@
     align-items: center;  
   }
 
+  .navbar{
+    background-color: greenyellow;
+  }
+
   button{
     background-color: lightblue;  
     color: black; 
   }
-  h1{
+  h1,h5, p{
     text-align: center;
   }
 
@@ -49,7 +53,7 @@
 
  </style>
 
-  <h1>Assignment 4 PBP/PBD</h1>
+  <h1>Assignment 4&5 PBP/PBD</h1>
 
   <h5>User currently logged-in: </h5>
   <p>{{user}}</p>
@@ -92,10 +96,9 @@
         </div>
     </div><br>
     {% endfor %}
-    <nav class="navbar bg-light">
+    <nav class="navbar">
       <div class="container-fluid">
         <a href="{% url 'todolist:create_task' %}"><button class="btn btn-info">Create New Task</button></a>
-
         <span class="navbar-brand mb-0 h1">Good luck with your task!</span>
         <a href="{% url 'todolist:logout' %}"><button class="btn btn-info">Logout</button></a>
       </div>

@@ -1,3 +1,4 @@
+ # Tugas 4
  # Apa kegunaan {% csrf_token %} pada elemen <form>? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen <form>?
 CSRF atau Cross-Sire Request Forgery sebenarnya adalah sebuah serangan terhadap aplikasi web yang memanfaatkan bug atau vulnerability pada aplikasi web dengan mengeksploitasi suatu task dari sebuah web dengan memanfaatkan autentikasi yang dimiliki oleh user (korban). Oleh karenna itu, kegunaan csrf_token pada form adalah untuk mengamankan web kita agar tidak terjadi eksploitasi tersebut. Apabila tidak ada potongan kode tersebut, maka aplikasi web yang dibuat menjadi tidak aman.
 
@@ -260,3 +261,16 @@ urlpatterns = [
 ![image](https://user-images.githubusercontent.com/112604705/192695590-889dbaec-f0ed-4157-89bc-cab183c64716.png)
 
  Link Situs Web Heroku dapat diakses dari tautan berikut: https://andretugas2pbp.herokuapp.com/todolist/
+
+# Tugas 5
+# Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
+Inline CSS adalah dimana kode diletakkan di dalam sebuah tag HTML tertentu secara langsung. Inline CSS memiliki kelebihan yaitu permintaan HTTP yang lebih kecil. Kekurangan dari Inlince CSS adalah kode harus diterapkan pada setiap elemen dalam HTML, sehingga file akan terlihat kurang rapih dan sulit dibaca. Internal CSS adalah kode yang diletakkan di dalam bagian pada sebuah halaman. Internal CSS memiliki kelebihan dimana perubahan yang dilakukan hanya akan terjadi pada 1 halaman dan menggunakan satu file html. Internal CSS memiliki kekurangan bahwa perubahan hanya terjadi pada 1 halaman dan tidak efisien. External CSS adalah kode yang menghubungkan ke file.css eksternal. Perubahan apapun yang dibuat pada file CSS akan tampil pada website. Kelebihan dari External CSS adalah ukuran file HTML menjadi lebih kecil, rapih, mudah dibaca, dan file CSS yang sama dapat digunakan untuk banyak halaman HTML. Kekurangan dari External CSS adalah halaman tidak akan tertampil secara lengkap sebelum file CSS dipanggil.
+# Penjelasan tag HTML5 yang Diketahui
+`<body>` = Mendefinisikan isi dokumen <br />
+`<br>` = Single line break <br />
+`<button>` = Membuat sebuah tombol clickable <br />
+`<html>` = Mendifinisikan root sebuah dokumen HTML <br />
+`<p>` = Mendefinisikan sebuah paragraf <br />
+`<style>`= memberikan informasi style, biasanya dengan CSS <br />
+`<table>` = Mendefinisikan tabel <br />
+`<td>`, `<th>`, `<tr>` = mendefinisikan cell, header cell, dan row cell. <br />
