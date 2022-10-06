@@ -5,13 +5,6 @@
 {% endblock meta %}
 
 {% block content %}  
-<nav class="navbar bg-light">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Please add your task name and description!</span>
-    </div>
-  </nav>
-
-
 <style>
 html{
     background-color: lightgray
@@ -24,13 +17,29 @@ html{
 table{
     text-align: left;
   }
-  form{
+form{
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
-  }
+}
+.navbar-text{
+  text-align: center;
+  color:black
+}
+.navbar{
+  background-color: aquamarine;
+  text-align: center;
+}
+.container-fluid{
+  text-align: center;
+}
 </style>
+<nav class="navbar">
+  <div class="container-fluid">
+    <span class="navbar-text">Please add your task name and description!</span>
+  </div>
+</nav>
 
 
 <div class = "create_task">

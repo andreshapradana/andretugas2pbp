@@ -8,9 +8,11 @@
     border-radius: 5px;
     background-color: lightgrey;
     padding: 1px;
+    width: 90%;
+    height:auto;
     margin-left: auto;
     margin-right: auto;
-    tab-size: auto;
+    text-align: center;
   }
 
   .cards:hover {
@@ -39,6 +41,10 @@
   .navbar{
     background-color: greenyellow;
   }
+  .navbar-text{
+    font-size : 2vw;
+    color: black;
+  }
 
   button{
     background-color: lightblue;  
@@ -64,19 +70,19 @@
     {% for task in list_todolist %}
     <div class= "cards">
       <p>
-        <span class="textwrap"><b>Date : </b></span>
+        <span class="textwrap"><b>Date : </b></span><br>
         <span class="textwrap">{{task.date}}</span>
         </p>
         <p>
-        <span class="textwrap"><b>Title : </b></span>
+        <span class="textwrap"><b>Title : </b></span><br>
         <span class="textwrap">{{task.title}}</span>
         </p>
         <p>
-        <span class="textwrap"><b>Description : </b></span>
+        <span class="textwrap"><b>Description : </b></span><br>
         <span class="textwrap">{{task.description}}</span>
         </p>
         <p>
-        <span class="textwrap"><b>Status : </b></span>
+        <span class="textwrap"><b>Status : </b></span><br>
         {% if task.is_finished %}
         <span class="textwrap">Selesai</span>
         {% else %}
@@ -95,14 +101,15 @@
             <button type="submit">Delete</button>
           </form>
         </div>
+        <br>
     </div><br>
     {% endfor %}
+    
     <nav class="navbar">
       <div class="container-fluid">
         <a href="{% url 'todolist:create_task' %}"><button class="btn btn-info">Create New Task</button></a>
-        <span class="navbar-brand mb-0 h1">Good luck with your task!</span>
+        <span class="navbar-text">Good luck with your task!</span>
         <a href="{% url 'todolist:logout' %}"><button class="btn btn-info">Logout</button></a>
       </div>
     </nav>
-
  {% endblock content %}
