@@ -326,7 +326,7 @@ Menambahkan potongan kode
       flex-direction: column;
     }
   }
-```<br />
+```
 Dengan ini, kita dapat mengakses menggunakan hp.
 Lalu menambahkan `<meta name="viewport" content="width=device-width, initial-scale=1.0">` ke base.html.
 Lalu edit masing-masing font size dengan properti vw.
