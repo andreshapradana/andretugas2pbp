@@ -274,3 +274,48 @@ Inline CSS adalah dimana kode diletakkan di dalam sebuah tag HTML tertentu secar
 `<style>`= memberikan informasi style, biasanya dengan CSS <br />
 `<table>` = Mendefinisikan tabel <br />
 `<td>`, `<th>`, `<tr>` = mendefinisikan cell, header cell, dan row cell. <br />
+# Penjelasan Tipe CSS Selector
+Type selector memilih elemen berdasarkan nama tag. Class selector memilih elemen berdasarkan nama class yang diberikan. ID selector hanya digunakan untuk satu elemen saja. Attribute selector memilih berdasarkan atribut. Universial selector memilih semua elemen pada sebuah range tertentu.
+# Implementasi Checklist
+- Kustomiasi Templat HTML dengan menggunakan CSS/Bootstrap
+Pada implementasi ini, saya membuat navbar dengan bootstrap. Lalu, saya menambahkan style masing-masing pada HTML sehingga dapat didesain sekreatif mungkin.
+- Menambahkan card
+```py
+<div class= "cards">
+      <p>
+        <span class="textwrap"><b>Date : </b></span><br>
+        <span class="textwrap">{{task.date}}</span>
+        </p>
+        <p>
+        <span class="textwrap"><b>Title : </b></span><br>
+        <span class="textwrap">{{task.title}}</span>
+        </p>
+        <p>
+        <span class="textwrap"><b>Description : </b></span><br>
+        <span class="textwrap">{{task.description}}</span>
+        </p>
+        <p>
+        <span class="textwrap"><b>Status : </b></span><br>
+        {% if task.is_finished %}
+        <span class="textwrap">Selesai</span>
+        {% else %}
+        <span class="textwrap">Belum Selesai</span>
+        {% endif %}
+      </p>
+          <div class = "buttoncontainer">
+          <form method="POST" action="{% url 'todolist:update_data' %}">
+            {% csrf_token %} 
+            <input type="hidden" name="id" value="{{x.id}}"/>
+            <button type="submit">Update</button>
+          </form>
+          <form method="POST" action="{% url 'todolist:delete_data' %}">
+            {% csrf_token %} 
+            <input type="hidden" name="id" value="{{x.id}}"/>
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+        <br>
+    </div><br>
+```
+# Link HerokuApp:
+https://andretugas2pbp.herokuapp.com/todolist/
