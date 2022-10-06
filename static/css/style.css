@@ -7,9 +7,9 @@ th{
     border: 1px solid;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .layout {
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
     }
   }
