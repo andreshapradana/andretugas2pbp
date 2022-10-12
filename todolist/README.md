@@ -317,5 +317,18 @@ Pada implementasi ini, saya membuat navbar dengan bootstrap. Lalu, saya menambah
         <br>
     </div><br>
 ```
+- Menjadikan responsive
+Menambahkan potongan kode
+```py
+@media (max-width: 500px) {
+    .layout {
+      display: inline-flex;
+      flex-direction: column;
+    }
+  }
+```
+Dengan ini, kita dapat mengakses menggunakan hp.
+Lalu menambahkan `<meta name="viewport" content="width=device-width, initial-scale=1.0">` ke base.html.
+Lalu edit masing-masing font size dengan properti vw.
 # Link HerokuApp:
 https://andretugas2pbp.herokuapp.com/todolist/
