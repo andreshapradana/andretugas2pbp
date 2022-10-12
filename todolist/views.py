@@ -5,10 +5,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseNotFound
+from django.core import serializers
 from todolist.models import Task
 from todolist.forms import TaskForm
 # Create your views here.
 
+def todolist(request):
+    return render(request, "todolist_ajax.html")
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
@@ -77,3 +81,20 @@ def delete_data(request):
     todo = Task.objects.get(id=request.POST["id"])
     todo.delete()
     return redirect('todolist:show_todolist')
+
+def get_todolist_json(request):
+    todolist = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', todolist))
+
+def add_todolist_item(request):
+    if request.method == 'POST':
+        date = request.POST.get("date")
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+
+        new_todolist = Task(date=date, title=title, description=description)
+        new_todolist.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

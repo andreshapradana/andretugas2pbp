@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+ <style>
+  .cards{
+    box-shadow: 0 4px 8px 0  black;
+    transition: 0.3s;
+    border-radius: 3px;
+    background-color: lightgrey;
+    width: 50%;
+    height:auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .cards:hover {
+  box-shadow:  0 4px 8px 0 green;
+}
+
+  .textwrap{
+    font-family: "Monaco";
+    font-size:3vw;
+  }
+
+  h4{
+    font-family: "Monaco";
+  }
+
+  .buttoncontainer{
+    display: flex;
+    text-align: center;
+    justify-content: center;  
+    align-items: center;  
+  }
+
+  .container-fluid{
+    display: flex;
+    text-align: center;
+    justify-content: center;  
+    align-items: center;  
+  }
+
+  .navbar{
+    background-color: greenyellow;
+  }
+  .navbar-text{
+    font-size : 2vw;
+    color: black;
+  }
+
+  button{
+    background-color: lightblue;  
+    color: black; 
+  }
+  h1,h5, p{
+    text-align: center;
+  }
+
+  html{
+    background-color: lightgray;
+  }
+
+ </style>
+
+  <h1>Assignment 6 PBP/PBD</h1>
+
+  <h5>User currently logged-in: </h5>
+  <p>{{user}}</p>
+  <div class = "buttoncontainer">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add task</button>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">New Task</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Title:</label>
+              <input type="text" class="form-control" id="field_title">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="field_desc"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="msg" data-bs-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <br></br>
+
+  <div id="ajax-cards"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+  <script>
+    async function getTodolist(){
+      return fetch("{% url 'todolist:get_todolist_json' %}").then((res) => res.json())
+    }
+
+    async function refreshTodolist(){
+      document.getElementById("ajax-cards").innerHTML = ""
+      const todolist = await getTodolist()
+      let htmlString = ``
+      todolist.forEach(item=> {
+        console.log(item)
+        htmlString+=`\n
+        <div class="cards">
+          <div class="container">
+            <br>
+            <h4><b>Date</b></h4>
+            <p>${item.fields.date}</p>
+            <h4>Title</h4>
+            <p>${item.fields.title}</p>
+            <h4>Description</h4>
+            <p>${item.fields.description}</p>
+          </div> <br>
+        </div> <br>
+        `
+      });
+      document.getElementById("ajax-cards").innerHTML = htmlString
+      
+    }
+    
+    refreshTodolist()
+  </script>
+    
+    <nav class="navbar">
+      <div class="container-fluid">
+        <span class="navbar-text">Good luck with your task!</span>
+        <a href="{% url 'todolist:logout' %}"><button class="btn btn-info">Logout</button></a>
+      </div>
+    </nav>
+ {% endblock content %}
