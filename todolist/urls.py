@@ -11,7 +11,7 @@ urlpatterns = [
     path('create-task/', create_task, name='create_task'),
     path('', update_data, name='update_data'),
     path('', delete_data, name='delete_data'),
-    path('json/', get_todolist_json, name='get_todolist_json'),
-    path('todolist-ajax', todolist, name='todolist_ajax'),
-    path('create_task', add_todolist_item, name='add_todolist_item')
+    path('json/', todolist, name='todolist_ajax'),
+    path('add/', add_todolist_item, name='add_todolist_item'),
+    path('json-view/', get_todolist_json, name='get_todolist_json'),
 ]

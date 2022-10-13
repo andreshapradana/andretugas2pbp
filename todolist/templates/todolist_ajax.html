@@ -67,6 +67,7 @@
 
   <h5>User currently logged-in: </h5>
   <p>{{user}}</p>
+  <div id="ajax-cards"></div>
   <div class = "buttoncontainer">
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add task</button>
   </div>
@@ -78,14 +79,15 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form id="form">
+            {% csrf_token %} 
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Title:</label>
-              <input type="text" class="form-control" id="field_title">
+              <label for="recipient-name" class="col-form-label">Ttile:</label>
+              <input type="text" class="form-control" name="title">
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Description:</label>
-              <textarea class="form-control" id="field_desc"></textarea>
+              <textarea class="form-control" name="description"></textarea>
             </div>
           </form>
         </div>
@@ -99,9 +101,6 @@
 
   </div>
   <br></br>
-
-  <div id="ajax-cards"></div>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
@@ -133,8 +132,16 @@
       document.getElementById("ajax-cards").innerHTML = htmlString
       
     }
-    
-    refreshTodolist()
+    function addTodolist() {
+    fetch("{% url 'todolist:add_todolist_item' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+      }).then(refreshTodolist)
+    return false
+  }
+
+  document.getElementById("msg").onclick = addTodolist
+  refreshTodolist()
   </script>
     
     <nav class="navbar">

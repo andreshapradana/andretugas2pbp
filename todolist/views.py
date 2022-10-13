@@ -82,17 +82,18 @@ def delete_data(request):
     todo.delete()
     return redirect('todolist:show_todolist')
 
+@login_required(login_url='/todolist/login/')
 def get_todolist_json(request):
     todolist = Task.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', todolist))
 
+@login_required(login_url='/todolist/login/')
 def add_todolist_item(request):
     if request.method == 'POST':
-        date = request.POST.get("date")
         title = request.POST.get("title")
         description = request.POST.get("description")
 
-        new_todolist = Task(date=date, title=title, description=description)
+        new_todolist = Task(title=title, description=description, user=request.user)
         new_todolist.save()
 
         return HttpResponse(b"CREATED", status=201)
