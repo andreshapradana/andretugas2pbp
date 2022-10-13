@@ -132,7 +132,7 @@
       document.getElementById("ajax-cards").innerHTML = htmlString
       
     }
-    function addTodolist() {
+    async function addTodolist() {
     fetch("{% url 'todolist:add_todolist_item' %}", {
           method: "POST",
           body: new FormData(document.querySelector('#form'))
